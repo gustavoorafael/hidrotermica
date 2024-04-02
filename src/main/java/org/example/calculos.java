@@ -38,12 +38,15 @@ public class calculos {
         double produtibilidadeQueda = calculaProdutibilidadeAltura(p, alturaQueda); // p = produtibilidade especifica
         System.out.println("A produtibilidade associada a altura da queda em metros é: " + produtibilidadeQueda + "MW/(m^3/s)");
 
-
         double pinst = 510.0; //Potência Instalada
         double teifh = 2.53; // Porcentagem teifh
         double iph = 8.09; // Porcentagem iph
         double engolimentoMaximo = calculaEngolimentoMaximo(pinst, teifh, iph, prodEquivalente);
         System.out.println("O engolimento máximo é: " + engolimentoMaximo + "m^3/s");
+
+        double fator = 2.592;
+        double energiaArmazenadaMaxima = calculaEnergiaArmazenadaMaxima(fator);
+        System.out.println("A energia armazenada máxima é: " + energiaArmazenadaMaxima + "MW/mês");
     }
 
     public static double calcularCotaMax(double[] pcj, double vmax) {
@@ -65,13 +68,13 @@ public class calculos {
     public static double calculaCotaMed(double cotaMax, double cotaMin, double vmax, double vmin) {
         return (cotaMax - cotaMin)/(vmax - vmin);
     }
+
     public static double calculaProdutibilidadeEquivalente(double heq, double p) {
         return heq * p;
     }
     public static double calculaHEQ(double cotaMed, double cfuga, double cphid) {
         return (cotaMed - cfuga) - cphid;
     }
-
     private static double prodVolumeUtil(double vmax, double vmin, double porcentagem) {
         return porcentagem*(vmax - vmin) + vmin;
     }
@@ -84,9 +87,10 @@ public class calculos {
         return cotaMontante;
     }
 
-    // Calculo da altura da queda
 
+    // Calculo da altura da queda
     // se o coeficiente de perda for dado em metros(m)
+
     private static double calculaAlturaEmMetros(double cotaMontante, double cfuga, double cphid) {
         return (cotaMontante - cfuga) - cphid;
     }
@@ -94,9 +98,32 @@ public class calculos {
     private static double calculaProdutibilidadeAltura(double porcentagem, double alturaQueda) {
         return porcentagem*alturaQueda;
     }
-
     private static double calculaEngolimentoMaximo(double pinst, double teifh, double iph, double prodEquivalente) {
         return (pinst* ((1.0 - (teifh/100.0)) * (1.0 - (iph/100.0))))/prodEquivalente;
     }
+
+    private static double calculaEnergiaArmazenadaMaxima(double fator) {
+        double vUtil1 = 12792.0 - 2412.0;
+        double vUtil2 = 1120.0 - 974.0;
+        double vUtil3 = 1500.0 - 470.0;
+        double vUtil4 = 17725.0 - 4669.0;
+        double vUtil5 = 17027.0 - 4573.0;
+        double vUtil6 = 12540.0 - 7000.0;
+
+        double p1 = 0.9426 ;
+        double p2 = 0.6100;
+        double p3 = 0.6453;
+        double p4 = 0.2826;
+        double p5 = 0.6093;
+        double p6 = 0.5733;
+        double p7 = 1.0369;
+
+        return (1/fator)*( (p1+p2+p3+p4+p5)*(p2+p3+p4+p5)*(p6+p3+p4+p5)*(p7+p3+p4+p5)
+
+
+                );
+
+    }
+
 
 }
