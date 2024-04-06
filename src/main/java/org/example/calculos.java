@@ -2,6 +2,9 @@ package org.example;
 
 public class calculos {
 
+    public calculos() {
+    }
+
     public static void main(String[] args) {
         double[] pcv = {0.75215e3, 0.12284e-1, -0.12569e-5, 0.78525e-10, -0.19786e-14};
         double vmax = 12792.0;
@@ -44,9 +47,10 @@ public class calculos {
         double engolimentoMaximo = calculaEngolimentoMaximo(pinst, teifh, iph, prodEquivalente);
         System.out.println("O engolimento máximo é: " + engolimentoMaximo + "m^3/s");
 
-        double fator = 2.592;
-        double energiaArmazenadaMaxima = calculaEnergiaArmazenadaMaxima(fator);
-        System.out.println("A energia armazenada máxima é: " + energiaArmazenadaMaxima + "MW/mês");
+//        double fator = 2.592;
+//        double energiaArmazenadaMaxima = calculaEnergiaArmazenadaMaxima(fator);
+//        System.out.println("A energia armazenada máxima é: " + energiaArmazenadaMaxima + "MW/mês");
+
     }
 
     public static double calcularCotaMax(double[] pcj, double vmax) {
@@ -75,7 +79,7 @@ public class calculos {
     public static double calculaHEQ(double cotaMed, double cfuga, double cphid) {
         return (cotaMed - cfuga) - cphid;
     }
-    private static double prodVolumeUtil(double vmax, double vmin, double porcentagem) {
+    public static double prodVolumeUtil(double vmax, double vmin, double porcentagem) {
         return porcentagem*(vmax - vmin) + vmin;
     }
 
@@ -91,14 +95,14 @@ public class calculos {
     // Calculo da altura da queda
     // se o coeficiente de perda for dado em metros(m)
 
-    private static double calculaAlturaEmMetros(double cotaMontante, double cfuga, double cphid) {
+    static double calculaAlturaEmMetros(double cotaMontante, double cfuga, double cphid) {
         return (cotaMontante - cfuga) - cphid;
     }
     // se o coeficiente de perda for dado em percentual(%)
-    private static double calculaProdutibilidadeAltura(double porcentagem, double alturaQueda) {
+    static double calculaProdutibilidadeAltura(double porcentagem, double alturaQueda) {
         return porcentagem*alturaQueda;
     }
-    private static double calculaEngolimentoMaximo(double pinst, double teifh, double iph, double prodEquivalente) {
+    public static double calculaEngolimentoMaximo(double pinst, double teifh, double iph, double prodEquivalente) {
         return (pinst* ((1.0 - (teifh/100.0)) * (1.0 - (iph/100.0))))/prodEquivalente;
     }
 
@@ -121,7 +125,7 @@ public class calculos {
         return (1/fator)*( (p1+p2+p3+p4+p5)*(p2+p3+p4+p5)*(p6+p3+p4+p5)*(p7+p3+p4+p5)
 
 
-                );
+        );
 
     }
 
