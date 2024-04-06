@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 class calculosTest {
 
-    public Calculos calculos;
-    public EngolimentoMaximos engolimentoMaximos;
+    private Calculos calculos;
+    private EngolimentoMaximos engolimentoMaximos;
 
     // Adicione um método de setup para inicializar as variáveis antes dos testes
     @BeforeEach
@@ -30,7 +30,6 @@ class calculosTest {
         double teifh = 2.53; // Porcentagem teifh
         double iph = 8.09; // Porcentagem iph
         double engolimentoUsina1 = engolimentoMaximos.geracaoHidraulicaUsina(pcv, vmax, vmin, cfuga, cphid, p, porcentagem, pinst, teifh, iph);
-        System.out.println("A geração hidráulica dessa usina é: " + engolimentoUsina1 + "MV/mês");
 
 
 
