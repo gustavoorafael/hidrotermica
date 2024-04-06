@@ -2,7 +2,7 @@ package org.example;
 
 public class EngolimentoMaximos {
 
-    public calculos calculos;
+    public Calculos calculos;
 
     public double geracaoHidraulicaUsina(double[] pcv, double vmax, double vmin, double cfuga, double cphid, double p, double porcentagem, double pinst, double teifh, double iph) {
         double cotaMax = calculos.calcularCotaMax(pcv, vmax);

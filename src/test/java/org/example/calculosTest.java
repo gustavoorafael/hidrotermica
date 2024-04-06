@@ -1,13 +1,19 @@
 package org.example;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class calculosTest {
 
-    public calculos calculos;
+    public Calculos calculos;
     public EngolimentoMaximos engolimentoMaximos;
+
+    // Adicione um método de setup para inicializar as variáveis antes dos testes
+    @BeforeEach
+    void setUp() {
+        calculos = new Calculos(); // Supondo que Calculos é a classe que contém o método que você deseja testar
+        engolimentoMaximos = new EngolimentoMaximos(); // Supondo que EngolimentoMaximos é a classe que você está testando
+    }
 
 
     @Test

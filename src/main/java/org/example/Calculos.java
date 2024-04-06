@@ -1,8 +1,8 @@
 package org.example;
 
-public class calculos {
+public class Calculos {
 
-    public calculos() {
+    public Calculos() {
     }
 
     public static void main(String[] args) {
