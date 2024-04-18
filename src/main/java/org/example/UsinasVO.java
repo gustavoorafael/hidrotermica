@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class UsinasVO {
 
-    private double id;
+    private int id;
     private double vmax;
     private double vmin;
     private double pcv0;
@@ -24,7 +24,8 @@ public class UsinasVO {
     public UsinasVO() {
     }
 
-    public UsinasVO(double id, double vmax, double vmin, double pcv0, double pcv1, double pcv2, double pcv3, double pcv4, double pcv5, double prodesp, double teif, double iph, double pinst, double cfuga, double cphid) {
+
+    public UsinasVO(int id, double vmax, double vmin, double pcv0, double pcv1, double pcv2, double pcv3, double pcv4, double prodesp, double teif, double iph, double pinst, double cfuga, double cphid) {
         this.id = id;
         this.vmax = vmax;
         this.vmin = vmin;
@@ -33,7 +34,6 @@ public class UsinasVO {
         this.pcv2 = pcv2;
         this.pcv3 = pcv3;
         this.pcv4 = pcv4;
-        this.pcv5 = pcv5;
         this.prodesp = prodesp;
         this.teif = teif;
         this.iph = iph;
@@ -46,7 +46,7 @@ public class UsinasVO {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(int id) {
         this.id = id;
     }
 
