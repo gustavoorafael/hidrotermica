@@ -28,28 +28,12 @@ public class Calculos {
         double prodEquivalente = calculaProdutibilidadeEquivalente(heq, p);
         System.out.println("Produtibilidade Equivalente: " + prodEquivalente + "MW/(m^3/s)");
 
-        double porcentagem = 0.65; //porcentagem do volume util
-        double prodVolumeUtil = prodVolumeUtil(vmax, vmin, porcentagem);
-        System.out.println("Produtibilidade associada à altura relativa a " + porcentagem + "% do volume útil da usina: " + prodVolumeUtil + "hm^3");
-
-        double cotaMontante = calculaCotaMontante(pcv, prodVolumeUtil);
-        System.out.println("A cota montante é: " + cotaMontante + "m");
-
-        double alturaQueda = calculaAlturaEmMetros(cotaMontante, cfuga, cphid);
-        System.out.println("A altura da queda em metros é: " + alturaQueda + "m");
-
-        double produtibilidadeQueda = calculaProdutibilidadeAltura(p, alturaQueda); // p = produtibilidade especifica
-        System.out.println("A produtibilidade associada a altura da queda em metros é: " + produtibilidadeQueda + "MW/(m^3/s)");
-
         double pinst = 510.0; //Potência Instalada
         double teifh = 2.53; // Porcentagem teifh
         double iph = 8.09; // Porcentagem iph
         double engolimentoMaximo = calculaEngolimentoMaximo(pinst, teifh, iph, prodEquivalente);
         System.out.println("O engolimento máximo é: " + engolimentoMaximo + "m^3/s");
 
-//        double fator = 2.592;
-//        double energiaArmazenadaMaxima = calculaEnergiaArmazenadaMaxima(fator);
-//        System.out.println("A energia armazenada máxima é: " + energiaArmazenadaMaxima + "MW/mês");
 
     }
 
@@ -106,28 +90,19 @@ public class Calculos {
         return (pinst* ((1.0 - (teifh/100.0)) * (1.0 - (iph/100.0))))/prodEquivalente;
     }
 
-    private static double calculaEnergiaArmazenadaMaxima(double fator) {
-        double vUtil1 = 12792.0 - 2412.0;
-        double vUtil2 = 1120.0 - 974.0;
-        double vUtil3 = 1500.0 - 470.0;
-        double vUtil4 = 17725.0 - 4669.0;
-        double vUtil5 = 17027.0 - 4573.0;
-        double vUtil6 = 12540.0 - 7000.0;
 
-        double p1 = 0.9426 ;
-        double p2 = 0.6100;
-        double p3 = 0.6453;
-        double p4 = 0.2826;
-        double p5 = 0.6093;
-        double p6 = 0.5733;
-        double p7 = 1.0369;
-
-        return (1/fator)*( (p1+p2+p3+p4+p5)*(p2+p3+p4+p5)*(p6+p3+p4+p5)*(p7+p3+p4+p5)
-
-
-        );
-
-    }
+//        double porcentagem = 0.65; //porcentagem do volume util
+//        double prodVolumeUtil = prodVolumeUtil(vmax, vmin, porcentagem);
+//        System.out.println("Produtibilidade associada à altura relativa a " + porcentagem + "% do volume útil da usina: " + prodVolumeUtil + "hm^3");
+//
+//        double cotaMontante = calculaCotaMontante(pcv, prodVolumeUtil);
+//        System.out.println("A cota montante é: " + cotaMontante + "m");
+//
+//        double alturaQueda = calculaAlturaEmMetros(cotaMontante, cfuga, cphid);
+//        System.out.println("A altura da queda em metros é: " + alturaQueda + "m");
+//
+//        double produtibilidadeQueda = calculaProdutibilidadeAltura(p, alturaQueda); // p = produtibilidade especifica
+//        System.out.println("A produtibilidade associada a altura da queda em metros é: " + produtibilidadeQueda + "MW/(m^3/s)");
 
 
 }
