@@ -20,7 +20,6 @@ class calculosTest {
 
     @Test
     void calculoUsina1() {
-        // nome da usina
         double[] pcv = {0.75215e3, 0.12284e-1, -0.12569e-5, 0.78525e-10, -0.19786e-14}; // polinomios cota volume
         double vmax = 12792.0; //volume máximo da usina
         double vmin = 2412.0; //volume mínimo da usina

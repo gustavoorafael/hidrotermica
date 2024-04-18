@@ -8,21 +8,12 @@ public class EngolimentoMaximos {
         double cotaMax = calculos.calcularCotaMax(pcv, vmax);
         double cotaMin = calculos.calcularCotaMin(pcv, vmin);
         double cotaMed = calculos.calculaCotaMed(cotaMax, cotaMin, vmax, vmin);
-        System.out.println("COTAMED: " + cotaMed + "m");
-
         double heq = calculos.calculaHEQ(cotaMed, cfuga, cphid);
-        System.out.println("HEQ: " + heq + "m");
-
         double prodEquivalente = calculos.calculaProdutibilidadeEquivalente(heq, p);
-        System.out.println("Produtibilidade Equivalente: " + prodEquivalente + "MW/(m^3/s)");
-
         double engolimentoMaximo = calculos.calculaEngolimentoMaximo(pinst, teifh, iph, prodEquivalente);
-        System.out.println("O engolimento máximo é: " + engolimentoMaximo + "m^3/s");
-
         double geracaoHid = engolimentoMaximo* p;
         System.out.println("A geração hidráulica dessa usina é: " + geracaoHid + "MV/mês");
         return geracaoHid;
-
     }
 
 
@@ -38,4 +29,9 @@ public class EngolimentoMaximos {
 //        double produtibilidadeQueda = calculos.calculaProdutibilidadeAltura(p, alturaQueda); // p = produtibilidade especifica
 //        System.out.println("A produtibilidade associada a altura da queda em metros é: " + produtibilidadeQueda + "MW/(m^3/s)");
 
+
+    //        System.out.println("COTAMED: " + cotaMed + "m");
+//        System.out.println("HEQ: " + heq + "m");
+//        System.out.println("Produtibilidade Equivalente: " + prodEquivalente + "MW/(m^3/s)");
+//        System.out.println("O engolimento máximo é: " + engolimentoMaximo + "m^3/s");
 }
