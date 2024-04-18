@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Objects;
 
-public class HidroVO implements ArquivoTestCsvVO{
+public class UsinasVO {
 
     private double id;
     private double vmax;
@@ -21,10 +21,10 @@ public class HidroVO implements ArquivoTestCsvVO{
     private double cphid;
 
 
-    public HidroVO() {
+    public UsinasVO() {
     }
 
-    public HidroVO(double id, double vmax, double vmin, double pcv0, double pcv1, double pcv2, double pcv3, double pcv4, double pcv5, double prodesp, double teif, double iph, double pinst, double cfuga, double cphid) {
+    public UsinasVO(double id, double vmax, double vmin, double pcv0, double pcv1, double pcv2, double pcv3, double pcv4, double pcv5, double prodesp, double teif, double iph, double pinst, double cfuga, double cphid) {
         this.id = id;
         this.vmax = vmax;
         this.vmin = vmin;
@@ -166,7 +166,7 @@ public class HidroVO implements ArquivoTestCsvVO{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        HidroVO hidroVO = (HidroVO) o;
+        UsinasVO hidroVO = (UsinasVO) o;
         return Double.compare(id, hidroVO.id) == 0 && Double.compare(vmax, hidroVO.vmax) == 0 && Double.compare(vmin, hidroVO.vmin) == 0 && Double.compare(pcv0, hidroVO.pcv0) == 0 && Double.compare(pcv1, hidroVO.pcv1) == 0 && Double.compare(pcv2, hidroVO.pcv2) == 0 && Double.compare(pcv3, hidroVO.pcv3) == 0 && Double.compare(pcv4, hidroVO.pcv4) == 0 && Double.compare(pcv5, hidroVO.pcv5) == 0 && Double.compare(prodesp, hidroVO.prodesp) == 0 && Double.compare(teif, hidroVO.teif) == 0 && Double.compare(iph, hidroVO.iph) == 0 && Double.compare(pinst, hidroVO.pinst) == 0 && Double.compare(cfuga, hidroVO.cfuga) == 0 && Double.compare(cphid, hidroVO.cphid) == 0;
     }
 
@@ -174,14 +174,4 @@ public class HidroVO implements ArquivoTestCsvVO{
     public int hashCode() {
         return Objects.hash(id, vmax, vmin, pcv0, pcv1, pcv2, pcv3, pcv4, pcv5, prodesp, teif, iph, pinst, cfuga, cphid);
     }
-
-    @Override
-    public String getHeader() {
-        return "id;vmax;vmin;pcv0;pcv1;pcv2;pcv3;pcv4;prodesp;teif;iph;pinst;cfuga;cphid";
-    }
-
-    @Override
-    public String printLinha() {
-        return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s", getId(), getVmax(), getVmin(), getPcv0(), getPcv1(), getPcv2(), getPcv3(), getPcv4(), getPcv5(), getProdesp(), getTeif(), getIph(), getPinst(), getCfuga(), getCphid());	}
-
 }

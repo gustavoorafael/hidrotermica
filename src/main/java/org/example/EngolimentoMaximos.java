@@ -12,7 +12,7 @@ public class EngolimentoMaximos {
         double prodEquivalente = calculos.calculaProdutibilidadeEquivalente(heq, p);
         double engolimentoMaximo = calculos.calculaEngolimentoMaximo(pinst, teifh, iph, prodEquivalente);
         double geracaoHid = engolimentoMaximo* p;
-        System.out.println("A geração hidráulica dessa usina é: " + geracaoHid + "MV/mês");
+//        System.out.println("A geração hidráulica dessa usina é: " + geracaoHid + "MV/mês");
         return geracaoHid;
     }
 
