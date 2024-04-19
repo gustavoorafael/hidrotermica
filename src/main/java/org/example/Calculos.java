@@ -32,9 +32,7 @@ public class Calculos {
         double engolimentoMaximo = calculaEngolimentoMaximo(pinst, teifh, iph, prodEquivalente);
         double geracaoHid = engolimentoMaximo* p;
 
-//        double fator = 2.592;
-//        double energiaArmazenadaMaxima = calculaEnergiaArmazenadaMaxima(fator);
-//        System.out.println("A energia armazenada máxima é: " + energiaArmazenadaMaxima + "MW/mês");
+
         return geracaoHid;
 
     }
@@ -93,7 +91,7 @@ public class Calculos {
         return (pinst* ((1.0 - (teifh/100.0)) * (1.0 - (iph/100.0))))/prodEquivalente;
     }
 
-    private static double calculaEnergiaArmazenadaMaxima(double fator) {
+    public static double calculaEnergiaArmazenadaMaxima(double fator) {
         double vUtil1 = 12792.0 - 2412.0;
         double vUtil2 = 1120.0 - 974.0;
         double vUtil3 = 1500.0 - 470.0;
@@ -103,16 +101,48 @@ public class Calculos {
 
         double p1 = 0.9426 ;
         double p2 = 0.6100;
-        double p3 = 0.6453;
-        double p4 = 0.2826;
-        double p5 = 0.6093;
-        double p6 = 0.5733;
-        double p7 = 1.0369;
+        double p3 = 0.5733;
+        double p4 = 1.0369;
+        double p5 = 0.6453;
+        double p6 = 0.2826;
+        double p7 = 0.6093;
 
-        return (1/fator)*( (p1+p2+p3+p4+p5)*(p2+p3+p4+p5)*(p6+p3+p4+p5)*(p7+p3+p4+p5));
-
+        return (1/fator)*((vUtil1)*(p1+p2+p5+p6+p7) +
+                        (vUtil2)*(p2+p5+p6+p7) +
+                        (vUtil3)*(p3+p5+p6+p7) +
+                        (vUtil4)*(p4+p5+p6+p7) +
+                        (vUtil5)*(p5+p6+p7) +
+                        (vUtil6)*(p7));
 
     }
+
+    public static double calculaEnergiaControlavel() {
+        double vUtil1 = 195.0;
+        double vUtil2 = 224.0 - 195.0;
+        double vUtil3 = 263.0;
+        double vUtil4 = 304.0;
+        double vUtil5 = 1027.0 - 224.0 - 263.0 - 304.0;
+        double vUtil6 = 1410.0 - 1027.0;
+
+        double p1 = 1.0025 ;
+        double p2 = 0.6142;
+        double p3 = 0.6105;
+        double p4 = 1.1026;
+        double p5 = 0.6812;
+        double p6 = 0.2826;
+        double p7 = 0.6240;
+
+        return ((vUtil1)*(p1+p2+p5+p6+p7) +
+                (vUtil2)*(p2+p5+p6+p7) +
+                (vUtil3)*(p3+p5+p6+p7) +
+                (vUtil4)*(p4+p5+p6+p7) +
+                (vUtil5)*(p5+p6+p7) +
+                (vUtil6)*(p7));
+
+    }
+
+
+
 
 
 }

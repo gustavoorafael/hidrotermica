@@ -39,9 +39,6 @@ class CalculosTest {
 
         for (String s : listaValoresUsinas) {
             System.out.println("Usina " + usinaIndex);
-            double geracaoUsina100 = getGeracaoUsina(s, 1.0);
-            geracaoResultante += geracaoUsina100;
-            System.out.println("A geração hidráulica resultante das usinas EMBORCACAO, NOVA PONTE, MIRANDA, CORUMBA I, ITUMBIARA, CACHOEIRA DOURADA e SAO SIMAO é: " + geracaoResultante + " MV/mês");
 
             for(Double porcentagem : listaPorcentagem){
                 double geracaoUsina = getGeracaoUsina(s, porcentagem);
@@ -50,11 +47,33 @@ class CalculosTest {
                 System.out.println();
             }
             usinaIndex++;
+
+            double geracaoUsina100 = getGeracaoUsina(s, 1.0);
+            geracaoResultante += geracaoUsina100;
+            System.out.println();
+            System.out.println("A geração hidráulica resultante das usinas EMBORCACAO, NOVA PONTE, MIRANDA, CORUMBA I, ITUMBIARA, CACHOEIRA DOURADA e SAO SIMAO é: " + geracaoResultante + " MV/mês");
+            System.out.println();
         }
 
+        double energiaArmazenadaMaxima = calculos.calculaEnergiaArmazenadaMaxima(2.592);
+        System.out.println("A energia armazenada máxima é: " + energiaArmazenadaMaxima + "MW/mês");
+        System.out.println();
+
+        double energiaControlavel = calculos.calculaEnergiaControlavel();
+        System.out.println("A energia armazenada máxima é: " + energiaControlavel + "MW/mês");
+        System.out.println();
+        System.out.println("A energia fio d'água é: 13.2822MW/mês");
     }
 
     private double getGeracaoUsina(String parametros, double porcentagem) {
+        UsinasVO usina = getValoresUsina(parametros, porcentagem);
+
+        double[] pcv = {usina.getPcv0(), usina.getPcv1(), usina.getPcv2(), usina.getPcv3(), usina.getPcv4()};
+        double geracaoUsina = calculos.geracaoHidraulicaUsina(pcv, usina.getVmax(), usina.getVmin(), usina.getCfuga(), usina.getCphid(), usina.getProdesp(), usina.getPinst(), usina.getTeif(), usina.getIph(), 0.65);
+        return geracaoUsina;
+    }
+
+    private static UsinasVO getValoresUsina(String parametros, double porcentagem) {
         String[] valoresStr = parametros.split(";");
         List<Double> valores = new ArrayList<>();
         for (String valorStr : valoresStr) {
@@ -83,10 +102,7 @@ class CalculosTest {
         if (usina.getVmax() == usina.getVmin()) {
             usina.setVmax(usina.getVmax() + 0.000001);
         }
-
-        double[] pcv = {usina.getPcv0(), usina.getPcv1(), usina.getPcv2(), usina.getPcv3(), usina.getPcv4()};
-        double geracaoUsina = calculos.geracaoHidraulicaUsina(pcv, usina.getVmax(), usina.getVmin(), usina.getCfuga(), usina.getCphid(), usina.getProdesp(), usina.getPinst(), usina.getTeif(), usina.getIph(), 0.65);
-        return geracaoUsina;
+        return usina;
     }
 
     private static List<String> preencheLista() {
