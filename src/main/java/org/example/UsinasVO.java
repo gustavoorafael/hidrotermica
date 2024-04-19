@@ -158,7 +158,7 @@ public class UsinasVO {
         return cphid;
     }
 
-    public void setCfugacphid(double cphid) {
+    public void setCphid(double cphid) {
         this.cphid = cphid;
     }
 
