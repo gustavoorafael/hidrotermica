@@ -8,7 +8,7 @@ import java.util.List;
 class CalculosTest {
     private Calculos calculos;
 
-    /** Dados necessários para calcular a geração hidráulica da usina:
+    /** Dados necessários para calcular a geração hidráulica das usinas:
      * Volume máximo
      * Volume mínimo
      * PCV - Polinômios Cota x Volume
@@ -30,7 +30,7 @@ class CalculosTest {
         double geracaoResultante = 0.0;
         List<String> listaValoresUsinas = preencheLista();
         int usinaIndex = 1;
-        List<Double> listaPorcentagem = new ArrayList<>();
+        List<Double> listaPorcentagem = new ArrayList<>(); // Volume inicial será essas porcentagens do volume máximo.
         listaPorcentagem.add(1.0);
         listaPorcentagem.add(0.75);
         listaPorcentagem.add(0.65);
@@ -39,16 +39,18 @@ class CalculosTest {
 
         for (String s : listaValoresUsinas) {
             System.out.println("Usina " + usinaIndex);
+            double geracaoUsina100 = getGeracaoUsina(s, 1.0);
+            geracaoResultante += geracaoUsina100;
+            System.out.println("A geração hidráulica resultante das usinas EMBORCACAO, NOVA PONTE, MIRANDA, CORUMBA I, ITUMBIARA, CACHOEIRA DOURADA e SAO SIMAO é: " + geracaoResultante + " MV/mês");
+
             for(Double porcentagem : listaPorcentagem){
                 double geracaoUsina = getGeracaoUsina(s, porcentagem);
-                geracaoResultante += geracaoUsina;
                 System.out.println("Cálculo feito para " + porcentagem + "% do volume máximo da usina " + usinaIndex );
                 System.out.println("A geração hidráulica da usina " + usinaIndex + " é: " + geracaoUsina + " MV/mês");
                 System.out.println();
             }
             usinaIndex++;
         }
-        System.out.println("A geração hidráulica resultante das usinas EMBORCACAO, NOVA PONTE, MIRANDA, CORUMBA I, ITUMBIARA, CACHOEIRA DOURADA e SAO SIMAO é: " + geracaoResultante + " MV/mês");
 
     }
 
