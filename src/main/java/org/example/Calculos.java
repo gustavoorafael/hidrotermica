@@ -5,13 +5,13 @@ public class Calculos {
     public Calculos() {
     }
 
-    public double geracaoHidraulicaUsina(double[] pcv, double vmax, double vmin, double cfuga, double cphid, double p, double pinst, double teifh, double iph, double porcentagem) {
+    public double geracaoHidraulicaUsina(double[] pcv, double vmax, double vmin, double cfuga, double cphid, double p, double pinst, double teifh, double iph, double porcentagem, int denominador) {
         double cotaMax = calcularCotaMax(pcv, vmax);
         double cotaMin = calcularCotaMin(pcv, vmin);
         double cotaMed = calculaCotaMed(cotaMax, cotaMin, vmax, vmin);
         System.out.println("COTAMED: " + cotaMed + " m" );
 
-        double heq = calculaHEQ(cotaMed, cfuga, cphid);
+        double heq = calculaHEQ(cotaMed, cfuga, cphid, denominador);
         System.out.println("Altura de queda equivalente: " + heq + " m" );
 
         double prodEquivalente = calculaProdutibilidadeEquivalente(heq, p);
@@ -30,7 +30,8 @@ public class Calculos {
         System.out.println("A produtibilidade associada a altura da queda em metros é: " + produtibilidadeQueda + "MW/(m^3/s)");
 
         double engolimentoMaximo = calculaEngolimentoMaximo(pinst, teifh, iph, prodEquivalente);
-        double geracaoHid = engolimentoMaximo* p;
+
+        double geracaoHid = engolimentoMaximo* prodEquivalente;
 
 
         return geracaoHid;
@@ -60,8 +61,8 @@ public class Calculos {
     public static double calculaProdutibilidadeEquivalente(double heq, double p) {
         return heq * p;
     }
-    public static double calculaHEQ(double cotaMed, double cfuga, double cphid) {
-        return (cotaMed - cfuga) - cphid;
+    public static double calculaHEQ(double cotaMed, double cfuga, double cphid, int denominador) {
+        return (cotaMed - cfuga) * (1-(cphid/ denominador));
     }
     private static double prodVolumeUtil(double vmax, double vmin, double porcentagem) {
         return porcentagem*(vmax - vmin) + vmin;
