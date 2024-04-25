@@ -60,7 +60,7 @@ class CalculosTest {
         System.out.println();
 
         double energiaControlavel = calculos.calculaEnergiaControlavel();
-        System.out.println("A energia armazenada máxima é: " + energiaControlavel + "MW/mês");
+        System.out.println("A energia controlável é: " + energiaControlavel + "MW/mês");
         System.out.println();
         System.out.println("A energia fio d'água é: 13.2822MW/mês");
     }
